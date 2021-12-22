@@ -22,14 +22,14 @@ public class Launcher {
 			
 			do {
 		
-				System.out.print("\n\nChoisissez le graphe à traiter parmi la liste suivante :\n");
+				System.out.print("\n\nChoisissez le graphe ï¿½ traiter parmi la liste suivante :\n");
 				
 				// We display all the file names and ask the user to choose a graph from the list
 				for (int u = 1; u <= namesTxtFiles.size(); u++)
 					System.out.println(u + " - " + namesTxtFiles.get(u - 1));
 		
 				do {
-					System.out.print("\nVotre choix (entrez le numéro de du graphe) : ");
+					System.out.print("\nVotre choix (entrez le numï¿½ro de du graphe) : ");
 					sc = new Scanner(System.in);
 					entry = sc.nextInt();
 				} while (entry <= 0 || entry > namesTxtFiles.size());
@@ -80,7 +80,7 @@ public class Launcher {
 						+ "1) Choisir un autre graphe\n"
 						+ "2) Quitter le programme\n");	
 				do {
-					System.out.print("\nVotre choix (entrez le numéro du choix) : ");
+					System.out.print("\nVotre choix (entrez le numï¿½ro du choix) : ");
 					sc = new Scanner(System.in);
 					entry = sc.nextInt();
 				} while (entry < 1 || entry > 2);
@@ -180,8 +180,8 @@ public class Launcher {
 						
 						
 						
-						// Mettre dans matrice d'adjacence à la ligne d'indice 'initial' les valeurs obtenues
-						// 'Transition' sera le contenu de la case de la matrice, et 'Arrival' sera la colonne à remplir par ce contenu
+						// Mettre dans matrice d'adjacence ï¿½ la ligne d'indice 'initial' les valeurs obtenues
+						// 'Transition' sera le contenu de la case de la matrice, et 'Arrival' sera la colonne ï¿½ remplir par ce contenu
 						
 						
 						
@@ -207,3 +207,6 @@ public class Launcher {
 	}
 
 }
+
+
+

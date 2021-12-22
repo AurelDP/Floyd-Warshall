@@ -53,6 +53,46 @@ public class Graph {
 		this.adjacencyMatrix = adjacencyMatrix;
 	}
 	
+	public static void printMatrix(int dist[][]) {
+		System.out.println("New Matrix: ");
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < n; ++j) {
+				if (dist[i][j] == I)
+					System.out.print("I   \t");
+				else
+					System.out.print(dist[i][j] + "   \t");
+			}
+			System.out.println();
+		}
+	}
+
+	private static Booleen isAbsorbent(int dist[][]) {
+		for (int k = 0, k < dist.lenght, k++) {
+			if (dist[k][k] < 0)
+				return true;
+		}
+		return false;
+	}
 	
+	private static void FloydWarshall(int tab[][]) {
+		int n = tab.lenght;
+		int[][] dist = new int[n][n];
+		int i, j, k;
+	
+		dist = tab;
+	
+		// Floyd-Warshall Algorithm
+		for (k = 0; k < n; k++) {
+			for (j = 0; j < n; j++) {
+				for (i = 0; i < n; i++) {
+					// If k is on the shortest path from
+					// i to j, then update the value of dist[i][j]
+					if (dist[i][k] + dist[k][j] < dist[i][j])
+						dist[i][j] = dist[i][k] + dist[k][j];
+				}	
+			}	
+		}
+		printMatrix(dist);
+	}
 	
 }
