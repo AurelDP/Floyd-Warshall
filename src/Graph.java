@@ -62,7 +62,7 @@ public class Graph {
 		return false;
 	}
 	
-	private static void floydWarshall(int tab[][]) {
+	private static int[][] floydWarshall(int tab[][]) {
 		int n = tab.length;
 		int[][] dist = new int[n][n];
 		int i, j, k;
@@ -77,7 +77,9 @@ public class Graph {
 				}	
 			}	
 		}
+		
 		printMatrix(dist);
+		return tab;
 	}
 	
 }
