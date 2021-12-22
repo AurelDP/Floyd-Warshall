@@ -138,7 +138,6 @@ public class Launcher {
 	private static Graph getGraphFromFile(final String nom) {
 
 		int nbrStates = 0;
-		int nbrTransitions = 0;
 		
 		ArrayList<ArrayList<Integer>> adjacencyMatrix = new ArrayList<ArrayList<Integer>>();
 		
@@ -158,12 +157,7 @@ public class Launcher {
 					case 1:
 						nbrStates = lineScanner.nextInt();
 						break;
-					
-					// Second line
-					case 2:
-						nbrTransitions = lineScanner.nextInt();
-						break;
-					
+										
 					// Finally, we recover all the transitions
 					default:
 						String line = lineScanner.next();
@@ -203,7 +197,7 @@ public class Launcher {
 		}
 		
 		// With the variables filled in, all that remains is to call the Graph constructor
-		return new Graph(nbrStates, nbrTransitions, adjacencyMatrix);
+		return new Graph(nbrStates, adjacencyMatrix);
 	}
 
 }
