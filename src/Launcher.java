@@ -135,11 +135,11 @@ public class Launcher {
 		return names;
 	}
 	
-	private static Double[][] arrayListToArray2D(ArrayList<ArrayList<Integer>> arrayList) {
-		Double[][] array = new Double[arrayList.size()][];
+	private static Integer[][] arrayListToArray2D(ArrayList<ArrayList<Integer>> arrayList) {
+		Integer[][] array = new Integer[arrayList.size()][];
 		
 		for (int i = 0; i < arrayList.size(); i++) {
-			array[i] = arrayList.get(i).toArray(new Double[arrayList.size()]);
+			array[i] = arrayList.get(i).toArray(new Integer[arrayList.size()]);
 		}
 		
 		return array;
@@ -206,7 +206,7 @@ public class Launcher {
 			e.printStackTrace();
 		}
 		
-		Double[][] adjacencyMatrix = arrayListToArray2D(temporaryAdjacencyMatrix);
+		Integer[][] adjacencyMatrix = arrayListToArray2D(temporaryAdjacencyMatrix);
 		
 		// With the variables filled in, all that remains is to call the Graph constructor
 		return new Graph(nbrStates, adjacencyMatrix);

@@ -18,19 +18,19 @@ public class main {
 		
 		System.out.println("test");*/
 		
-		Double L[][] = { 
-				{ 0.0, 7.0, 4.0, 0.1, 0.1 },
-				{ 0.1, 0.0, 1.0, 0.1, 0.1 }, 
-				{ 0.1, 0.1, 0.0, 0.1, 0.1 },
-				{ 0.1, 0.1, 0.1, 0.0, 2.0 },
-				{ 0.1, 0.1, 0.1, 0.1, 0.0 }
+		Integer L[][] = { 
+				{ 0, 7, 4, null, null },
+				{ null, 0, 1, null, null }, 
+				{ null, null, 0, null, null },
+				{ null, null, null, 0, 2 },
+				{ null, null, null, null, 0 }
 		};
 		
-		Double P[][] = Graph.createPFromL(L);
+		Integer P[][] = Graph.createPFromL(L);
 		
-		Double[][][] resTabs = Graph.floydWarshall(L, P);
-		Double newL[][] = resTabs[0];
-		Double newP[][] = resTabs[1];
+		Integer[][][] resTabs = Graph.floydWarshall(L, P);
+		Integer newL[][] = resTabs[0];
+		Integer newP[][] = resTabs[1];
 		
 		if (!Graph.isAbsorbent(newL)) {
 			System.out.println("\nNo absorbent circuit\n\n");

@@ -1,18 +1,18 @@
 public class Graph {
 	
 	private int nbrStates;
-	private Double[][] adjacencyMatrix;
+	private Integer[][] adjacencyMatrix;
 	
-	public Graph(int nbrStates, Double[][] adjacencyMatrix) {
+	public Graph(int nbrStates, Integer[][] adjacencyMatrix) {
 		this.nbrStates = nbrStates;
-		this.adjacencyMatrix = new Double[nbrStates][nbrStates];
-		this.adjacencyMatrix = (Double[][]) adjacencyMatrix.clone();
+		this.adjacencyMatrix = new Integer[nbrStates][nbrStates];
+		this.adjacencyMatrix = (Integer[][]) adjacencyMatrix.clone();
 	}
 	
 	public Graph(Graph graph) {
 		this.nbrStates = graph.nbrStates;
-		this.adjacencyMatrix = new Double[this.nbrStates][this.nbrStates];
-		this.adjacencyMatrix = (Double[][]) graph.adjacencyMatrix.clone();;
+		this.adjacencyMatrix = new Integer[this.nbrStates][this.nbrStates];
+		this.adjacencyMatrix = (Integer[][]) graph.adjacencyMatrix.clone();;
 	}
 	
 	/*-----------------------------------------------------------------------------
@@ -27,19 +27,19 @@ public class Graph {
 		this.nbrStates = nbrStates;
 	}
 
-	public Double[][] getAdjacencyMatrix() {
+	public Integer[][] getAdjacencyMatrix() {
 		return adjacencyMatrix;
 	}
 
-	public void setAdjacencyMatrix(Double[][] AdjacencyMatrix) {
-		this.adjacencyMatrix = (Double[][]) AdjacencyMatrix.clone();
+	public void setAdjacencyMatrix(Integer[][] AdjacencyMatrix) {
+		this.adjacencyMatrix = (Integer[][]) AdjacencyMatrix.clone();
 	}
 	
 	/*-----------------------------------------------------------------------------
 	 * Methods
 	 ----------------------------------------------------------------------------*/
 	
-	private static void printMatrix(Double matrix[][], int u) {
+	private static void printMatrix(Integer matrix[][], int u) {
 		int n = matrix.length;
 		
 		if (u == 1)
@@ -56,32 +56,32 @@ public class Graph {
 		for (int i = 0; i < n; ++i) {
 			System.out.print(i + "   ");
 			for (int j = 0; j < n; ++j)
-				if (matrix[i][j] == 0.1)
+				if (matrix[i][j] == null)
 					System.out.print("X  ");
 				else
-					System.out.print(matrix[i][j].intValue() + "  ");
+					System.out.print(matrix[i][j] + "  ");
 			System.out.println();
 		}
 		
 	}
 	
-	public static Double[][] createPFromL(Double dist[][]) {
+	public static Integer[][] createPFromL(Integer dist[][]) {
 		int n = dist.length;
-		Double[][] preds = new Double[n][n];
+		Integer[][] preds = new Integer[n][n];
 		
 		for (int i = 0; i < n; i++) {
 			for (int u = 0; u < n; u++) {
-				if (dist[i][u] != 0.1)
-					preds[i][u] = i + 0.0;
+				if (dist[i][u] != null)
+					preds[i][u] = i;
 				else
-					preds[i][u] = 0.1;
+					preds[i][u] = null;
 			}
 		}
 		
 		return preds;
 	}
 	
-	public static Boolean isAbsorbent(Double dist[][]) {
+	public static Boolean isAbsorbent(Integer dist[][]) {
 		for (int k = 0; k < dist.length; k++) {
 			if (dist[k][k] < 0)
 				return true;
@@ -89,7 +89,7 @@ public class Graph {
 		return false;
 	}
 	
-	public static Double[][][] floydWarshall(Double dist[][], Double preds[][]) {		
+	public static Integer[][][] floydWarshall(Integer dist[][], Integer preds[][]) {		
 		int n = dist.length;
 		int i, j, k;
 		
@@ -101,12 +101,12 @@ public class Graph {
 		System.out.println("\nSteps :");
 		System.out.println("\n" + "-".repeat(20));
 		
-		Double[][][] resTabs = new Double[2][n][n];
+		Integer[][][] resTabs = new Integer[2][n][n];
 		
 		for (k = 0; k < n; k++) {
 			for (j = 0; j < n; j++) {
 				for (i = 0; i < n; i++) {
-					if ((dist[j][k] + dist[k][i] < dist[j][i] && dist[j][k] != 0.1 && dist[k][i] != 0.1 && dist[j][i] != 0.1) || (dist[j][k] != 0.1 && dist[k][i] != 0.1 && dist[j][i] == 0.1)) {
+					if ((dist[j][k] != null && dist[k][i] != null && dist[j][i] != null && dist[j][k] + dist[k][i] < dist[j][i]) || (dist[j][k] != null && dist[k][i] != null && dist[j][i] == null)) {
 						dist[j][i] = dist[j][k] + dist[k][i];
 						preds[j][i] = preds[k][i];
 						printMatrix(dist, 1);
@@ -123,7 +123,7 @@ public class Graph {
 		return resTabs;
 	}
 		
-	public static void displayBestRoutes(Double dist[][], Double preds[][]) {
+	public static void displayBestRoutes(Integer dist[][], Integer preds[][]) {
 		
 		printMatrix(dist, 1);
 		printMatrix(preds, 2);
@@ -136,7 +136,7 @@ public class Graph {
 			for (int col = 0; col < matrixLength; col++) {
 				if (row == col)
 					System.out.println("State " + row + " to " + col + " : No state change, distance = 0");
-				else if (dist[row][col] == 0.1)
+				else if (dist[row][col] == null)
 					System.out.println("State " + row + " to " + col + " : No route between these states");
 				else {
 					int tempCol = col;
@@ -144,7 +144,7 @@ public class Graph {
 					String str = "" + tempCol;
 					
 					while (row != tempCol) {
-						tempCol = preds[row][tempCol].intValue();
+						tempCol = preds[row][tempCol];
 						str += "-" + tempCol;
 					}
 					
