@@ -1,5 +1,3 @@
-package projet_floyd;
-
 public class Graph {
 	
 	private int nbrStates;
