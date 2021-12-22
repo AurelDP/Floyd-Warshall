@@ -22,14 +22,14 @@ public class Launcher {
 			
 			do {
 		
-				System.out.print("\n\nChoisissez le graphe ï¿½ traiter parmi la liste suivante :\n");
+				System.out.print("\n\nChoisissez le graphe à traiter parmi la liste suivante :\n");
 				
 				// We display all the file names and ask the user to choose a graph from the list
 				for (int u = 1; u <= namesTxtFiles.size(); u++)
 					System.out.println(u + " - " + namesTxtFiles.get(u - 1));
 		
 				do {
-					System.out.print("\nVotre choix (entrez le numï¿½ro de du graphe) : ");
+					System.out.print("\nVotre choix (entrez le numéro de du graphe) : ");
 					sc = new Scanner(System.in);
 					entry = sc.nextInt();
 				} while (entry <= 0 || entry > namesTxtFiles.size());
@@ -80,7 +80,7 @@ public class Launcher {
 						+ "1) Choisir un autre graphe\n"
 						+ "2) Quitter le programme\n");	
 				do {
-					System.out.print("\nVotre choix (entrez le numï¿½ro du choix) : ");
+					System.out.print("\nVotre choix (entrez le numéro du choix) : ");
 					sc = new Scanner(System.in);
 					entry = sc.nextInt();
 				} while (entry < 1 || entry > 2);
@@ -135,11 +135,21 @@ public class Launcher {
 		return names;
 	}
 	
+	private static Double[][] arrayListToArray2D(ArrayList<ArrayList<Integer>> arrayList) {
+		Double[][] array = new Double[arrayList.size()][];
+		
+		for (int i = 0; i < arrayList.size(); i++) {
+			array[i] = arrayList.get(i).toArray(new Double[arrayList.size()]);
+		}
+		
+		return array;
+	}
+	
 	private static Graph getGraphFromFile(final String nom) {
 
 		int nbrStates = 0;
 		
-		ArrayList<ArrayList<Integer>> adjacencyMatrix = new ArrayList<ArrayList<Integer>>();
+		ArrayList<ArrayList<Integer>> temporaryAdjacencyMatrix = new ArrayList<ArrayList<Integer>>();
 		
 		try {
 			// We retrieve the contents of the file chosen by the user
@@ -195,6 +205,8 @@ public class Launcher {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		Double[][] adjacencyMatrix = arrayListToArray2D(temporaryAdjacencyMatrix);
 		
 		// With the variables filled in, all that remains is to call the Graph constructor
 		return new Graph(nbrStates, adjacencyMatrix);
