@@ -8,13 +8,15 @@ public class Graph {
 	public Graph(int nbrStates, Integer[][] adjacencyMatrix) {
 		this.nbrStates = nbrStates;
 		this.adjacencyMatrix = new Integer[nbrStates][nbrStates];
-		this.adjacencyMatrix = (Integer[][]) adjacencyMatrix.clone();
+		this.adjacencyMatrix = copy(adjacencyMatrix);
+		//this.adjacencyMatrix = (Integer[][]) adjacencyMatrix.clone();
 	}
 	
 	public Graph(Graph graph) {
 		this.nbrStates = graph.nbrStates;
 		this.adjacencyMatrix = new Integer[this.nbrStates][this.nbrStates];
-		this.adjacencyMatrix = (Integer[][]) graph.adjacencyMatrix.clone();;
+		this.adjacencyMatrix = copy(adjacencyMatrix);
+		//this.adjacencyMatrix = (Integer[][]) graph.adjacencyMatrix.clone();;
 	}
 	
 	/*-----------------------------------------------------------------------------
@@ -34,7 +36,8 @@ public class Graph {
 	}
 
 	public void setAdjacencyMatrix(Integer[][] AdjacencyMatrix) {
-		this.adjacencyMatrix = (Integer[][]) AdjacencyMatrix.clone();
+		this.adjacencyMatrix = copy(adjacencyMatrix);
+		//this.adjacencyMatrix = (Integer[][]) AdjacencyMatrix.clone();
 	}
 	
 	/*-----------------------------------------------------------------------------
@@ -178,6 +181,11 @@ public class Graph {
 	
 	public void print() {
 		printMatrix(this.adjacencyMatrix, 3);
+	}
+	
+	
+	public static Integer[][] copy(Integer[][] matrice) {
+		return matrice;
 	}
 	
 }
