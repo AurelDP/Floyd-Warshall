@@ -171,7 +171,7 @@ public class H7_Graph {
 		for (int row = 0; row < matrixLength; row++) {
 			for (int col = 0; col < matrixLength; col++) {
 				if (row == col)
-					H7_Launcher.println("De " + row + " à " + col + " : Même état, distance = 0");
+					H7_Launcher.println("De " + row + " à " + col + " : Même état, distance = " + dist[row][col]);
 				else if (dist[row][col] == null)
 					H7_Launcher.println("De " + row + " à " + col + " : Aucun chemin existant");
 				else {
