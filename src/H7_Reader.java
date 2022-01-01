@@ -6,7 +6,6 @@ import java.io.IOException;
 public class H7_Reader {
 	
 	private int graphNumber;
-	private int stateNumber = 0;
 	
 	/*-----------------------------------------------------------------------------
 	 * Constructeurs
@@ -18,15 +17,7 @@ public class H7_Reader {
 		else
 			this.graphNumber = graphNumber;
 	}
-	
-	/*-----------------------------------------------------------------------------
-	 * Getters & Setters
-	 ----------------------------------------------------------------------------*/
 
-	public int getStateNumber() {
-		return stateNumber;
-	}
-	
 	/*-----------------------------------------------------------------------------
 	 * Méthodes
 	 ----------------------------------------------------------------------------*/
@@ -38,8 +29,8 @@ public class H7_Reader {
 			FileReader fr = new FileReader(thisFile.getAbsolutePath());
 			BufferedReader br = new BufferedReader(fr);
 			String line;
-			
-			stateNumber = Integer.parseInt(br.readLine());
+
+			int stateNumber = Integer.parseInt(br.readLine());
 			
 			Integer[][] temporaryMatrice = new Integer[stateNumber][stateNumber];
 			int i = 0;

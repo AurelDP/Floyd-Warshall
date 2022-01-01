@@ -1,47 +1,20 @@
 public class H7_Graph {
-	
-	private int nbrStates;
-	private Integer[][] adjacencyMatrix;
+
+	private final Integer[][] adjacencyMatrix;
 	
 	/*-----------------------------------------------------------------------------
 	 * Constructeurs
 	 ----------------------------------------------------------------------------*/
 	
-	public H7_Graph(int nbrStates, Integer[][] adjacencyMatrix) {
-		this.nbrStates = nbrStates;
+	public H7_Graph(Integer[][] adjacencyMatrix) {
 		this.adjacencyMatrix = copy(adjacencyMatrix);
 	}
-	
-	public H7_Graph(H7_Graph graph) {
-		this.nbrStates = graph.nbrStates;
-		this.adjacencyMatrix = copy(adjacencyMatrix);
-	}
-	
-	/*-----------------------------------------------------------------------------
-	 * Getters & Setters
-	 ----------------------------------------------------------------------------*/
 
-	public int getNbrStates() {
-		return nbrStates;
-	}
-
-	public void setNbrStates(int nbrStates) {
-		this.nbrStates = nbrStates;
-	}
-
-	public Integer[][] getAdjacencyMatrix() {
-		return adjacencyMatrix;
-	}
-
-	public void setAdjacencyMatrix(Integer[][] AdjacencyMatrix) {
-		this.adjacencyMatrix = copy(adjacencyMatrix);
-	}
-	
 	/*-----------------------------------------------------------------------------
 	 * Méthodes
 	 ----------------------------------------------------------------------------*/
 	
-	private static void printMatrix(Integer matrix[][], int u) {
+	private static void printMatrix(Integer[][] matrix, int u) {
 		int n = matrix.length;
 		
 		if (u == 1)
@@ -66,19 +39,11 @@ public class H7_Graph {
 				if (matrix[i][j] == null)
 					H7_Launcher.print(" X ");
 				else {
-					switch(String.valueOf(matrix[i][j]).length()) {
-					case 1:
-						H7_Launcher.print(" " + matrix[i][j] + " ");
-						break;
-						
-					case 2:
-						H7_Launcher.print(" " + matrix[i][j]);
-						break;
-					
-					default :
-						H7_Launcher.print("" + matrix[i][j]);
-						break;
-					}					
+					switch (String.valueOf(matrix[i][j]).length()) {
+						case 1 -> H7_Launcher.print(" " + matrix[i][j] + " ");
+						case 2 -> H7_Launcher.print(" " + matrix[i][j]);
+						default -> H7_Launcher.print("" + matrix[i][j]);
+					}
 				}
 				H7_Launcher.print("   ");
 			}
@@ -87,7 +52,7 @@ public class H7_Graph {
 		
 	}
 	
-	private static Integer[][] createPFromL(Integer dist[][]) {
+	private static Integer[][] createPFromL(Integer[][] dist) {
 		int n = dist.length;
 		Integer[][] preds = new Integer[n][n];
 		
@@ -103,7 +68,7 @@ public class H7_Graph {
 		return preds;
 	}
 	
-	public static Boolean isAbsorbent(Integer dist[][]) {
+	public static Boolean isAbsorbent(Integer[][] dist) {
 		for (int k = 0; k < dist.length; k++) {
 			if (dist[k][k] == null || dist[k][k] < 0)
 				return true;
@@ -111,11 +76,11 @@ public class H7_Graph {
 		return false;
 	}
 	
-	public static Integer[][][] floydWarshall(Integer dist[][]) {	
+	public static Integer[][][] floydWarshall(Integer[][] dist) {
 		int n = dist.length;
 		int i, j, k;
 		
-		Integer preds[][] = createPFromL(dist);
+		Integer[][] preds = createPFromL(dist);
 		
 		H7_Launcher.println("\n\n\n" + "-".repeat(40));
 		H7_Launcher.println("\tInitialisation :");
@@ -154,7 +119,7 @@ public class H7_Graph {
 		return resTabs;
 	}
 		
-	public static void displayBestRoutes(Integer dist[][], Integer preds[][]) {
+	public static void displayBestRoutes(Integer[][] dist, Integer[][] preds) {
 		
 		H7_Launcher.println("\n\n\n" + "-".repeat(40));
 		H7_Launcher.println("\tRésultat :");
@@ -170,18 +135,19 @@ public class H7_Graph {
 		
 		for (int row = 0; row < matrixLength; row++) {
 			for (int col = 0; col < matrixLength; col++) {
-				if (row == col)
-					H7_Launcher.println("De " + row + " à " + col + " : Même état, distance = " + dist[row][col]);
-				else if (dist[row][col] == null)
+				if (dist[row][col] == null)
 					H7_Launcher.println("De " + row + " à " + col + " : Aucun chemin existant");
 				else {
 					int tempCol = col;
+					// On ajoute une condition start pour que les boucles sur le même état soient prises en compte
+					boolean start = true;
 					
 					String str = "" + tempCol;
 					
-					while (row != tempCol) {
+					while (row != tempCol || start) {
 						tempCol = preds[row][tempCol];
 						str += "-" + tempCol;
+						start = false;
 					}
 					
 					StringBuilder sb = new StringBuilder(str);

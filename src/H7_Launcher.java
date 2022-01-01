@@ -1,7 +1,5 @@
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,11 +10,11 @@ public class H7_Launcher {
 
 	public static void main(String[] args) {
 		int entry;
-		Scanner sc = null;
+		Scanner sc;
 		boolean run = true;
 		
 		ArrayList<String> namesTxtFiles = findNamesInFile(new File("./graphs"));
-		
+
 		if (namesTxtFiles.size() != 0) {
 			
 			do {
@@ -73,15 +71,15 @@ public class H7_Launcher {
 				// On récupère le graphe depuis le fichier choisi ainsi que la matrice d'adjacence
 				H7_Reader testReader = new H7_Reader(entry);
 				Integer[][] adjacencyMatrix = testReader.getMatrice();
-				H7_Graph graphe = new H7_Graph(adjacencyMatrix.length, adjacencyMatrix);
+				H7_Graph graphe = new H7_Graph(adjacencyMatrix);
 				
 				// On affiche notre graphe initial
 				graphe.print();
 				
 				// On applique l'algorithme de Floyd Warshall
 				Integer[][][] resTabs = H7_Graph.floydWarshall(adjacencyMatrix);
-				Integer newL[][] = resTabs[0];
-				Integer newP[][] = resTabs[1];
+				Integer[][] newL = resTabs[0];
+				Integer[][] newP = resTabs[1];
 				
 				// On vérifie les circuits absorbants et on affiche les chemins les plus courts selon le résultat
 				if (!H7_Graph.isAbsorbent(newL)) {
@@ -96,7 +94,7 @@ public class H7_Launcher {
 				
 				System.out.print("\n\nQue voulez-vous faire :\n"
 						+ "1) Choisir un autre graphe\n"
-						+ "2) Quitter le programme\n");	
+						+ "2) Quitter le programme\n");
 				do {
 					System.out.print("\nVotre choix (entrez le numéro du choix) : ");
 					sc = new Scanner(System.in);
@@ -139,14 +137,32 @@ public class H7_Launcher {
 		File[] files = file.listFiles();
 		
 		ArrayList<String> names = new ArrayList<String>();
-		
-		for (File f : files) {
-			if (f.isFile()) {
-				names.add(f.getName());
+
+		if (files != null) {
+			for (File f : files) {
+				if (f.isFile()) {
+					names.add(f.getName());
+				}
 			}
 		}
-		
+
+		names.sort((s1, s2) -> compare(s1, s2));
 		return names;
+	}
+
+	private static int compare(String s1, String s2) {
+		// Si s1 est plus court que s2, s1 est décallé avant s2
+		if (s1.length() < s2.length())
+			return -1;
+		// Si s1 est plus long que s2, s1 est décallé après s2
+		if (s1.length() > s2.length())
+			return 1;
+		// S1 s1 et s2 sont de même longueur, on tri par ordre alphabétique
+		if(s1.compareTo(s2) < 0)
+			return -1;
+		if(s1.compareTo(s2) > 0)
+			return 1;
+		return 0;
 	}
 
 }
