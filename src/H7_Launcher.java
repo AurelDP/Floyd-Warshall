@@ -13,6 +13,7 @@ public class H7_Launcher {
 		Scanner sc;
 		boolean run = true;
 		
+		// On récupère les noms des fichiers dans le dossier graphs
 		ArrayList<String> namesTxtFiles = findNamesInFile(new File("./graphs"));
 
 		if (namesTxtFiles.size() != 0) {
@@ -25,9 +26,11 @@ public class H7_Launcher {
 				
 				System.out.print("\n\nChoisissez le graphe à traiter parmi la liste suivante :\n");
 				
+				// On affiche tous les noms de fichier
 				for (int u = 1; u <= namesTxtFiles.size(); u++)
 					System.out.println(u + " - " + namesTxtFiles.get(u - 1));
-		
+				
+				// On demande à l'utilisateur d'entrer le numéro correspondant au graphe qu'il souhaite traiter
 				do {
 					System.out.print("\nVotre choix (entrez le numéro du graphe) : ");
 					sc = new Scanner(System.in);
@@ -38,6 +41,8 @@ public class H7_Launcher {
 				/*-----------------------------------------------------------------------------
 				 * Choix de la trace (logs)
 				 ----------------------------------------------------------------------------*/
+				
+				// On génère un nouveau nom de fichier correspondant à la trace du graphe sélectionné
 				String nameOutputFile = namesTxtFiles.get(entry - 1);
 				nameOutputFile = nameOutputFile.replace(".txt", "");
 				nameOutputFile =  "./traces/" + nameOutputFile + "-trace.txt";
@@ -76,7 +81,7 @@ public class H7_Launcher {
 				// On affiche notre graphe initial
 				graphe.print();
 				
-				// On applique l'algorithme de Floyd Warshall
+				// On applique l'algorithme de Floyd Warshall et on récupère les résultats
 				Integer[][][] resTabs = H7_Graph.floydWarshall(adjacencyMatrix);
 				Integer[][] newL = resTabs[0];
 				Integer[][] newP = resTabs[1];
@@ -92,6 +97,7 @@ public class H7_Launcher {
 				 * Choix de fin (quitter ou recommencer)
 				 ----------------------------------------------------------------------------*/
 				
+				// On demande à l'utilisateur s'il souhaite relancer un autre graphe ou quitter le programme
 				System.out.print("\n\nQue voulez-vous faire :\n"
 						+ "1) Choisir un autre graphe\n"
 						+ "2) Quitter le programme\n");
@@ -117,6 +123,8 @@ public class H7_Launcher {
 	 * Méthodes
 	 ----------------------------------------------------------------------------*/
 	
+	// Méthode permettant de générer à la fois les messages en console et la trace
+	// (remplacement de System.out.print)
 	public static void print(String s) {
 		PrintStream orig = System.out;
 		System.setOut(ps);
@@ -125,6 +133,8 @@ public class H7_Launcher {
 		System.out.print(s);
 	}
 	
+	// Méthode permettant de générer à la fois les messages en console et la trace
+	// (remplacement de System.out.println)
 	public static void println(String s) {
 		PrintStream orig = System.out;
 		System.setOut(ps);
@@ -132,24 +142,29 @@ public class H7_Launcher {
 		System.setOut(orig);
 		System.out.println(s);
 	}
-		
+	
+	// Méthode retournant la liste des noms de chaque fichier dans le dossier graphs
 	private static ArrayList<String> findNamesInFile(File file) {
 		File[] files = file.listFiles();
 		
 		ArrayList<String> names = new ArrayList<String>();
-
+		
+		// On parcourt tous les fichiers dans la dossier graphs
 		if (files != null) {
 			for (File f : files) {
+				// Si le fichier est bien un fichier, on ajoute son nom dans la liste de noms
 				if (f.isFile()) {
 					names.add(f.getName());
 				}
 			}
 		}
-
+		
+		// On trie cette liste par longueur des noms puis par ordre alphabétique
 		names.sort((s1, s2) -> compare(s1, s2));
 		return names;
 	}
-
+	
+	// Méthode servant au tri de la liste de noms
 	private static int compare(String s1, String s2) {
 		// Si s1 est plus court que s2, s1 est décallé avant s2
 		if (s1.length() < s2.length())
