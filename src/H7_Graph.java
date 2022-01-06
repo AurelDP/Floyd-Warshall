@@ -111,6 +111,8 @@ public class H7_Graph {
 		// On crée une matrice 3D resTabs qui stockera la matrice des distances et la matrice des prédécesseurs
 		// afin de pouvoir retourner le tout en fin d'algorithme
 		Integer[][][] resTabs = new Integer[2][n][n];
+
+		int it = 1;
 		
 		// On crée la référence "floydWarshallLoop" afin de pouvoir arrêter l'algorithme si un circuit absorbant est détecté
 		floydWarshallLoop:
@@ -123,6 +125,8 @@ public class H7_Graph {
 					if ((dist[j][k] != null && dist[k][i] != null && dist[j][i] != null && dist[j][k] + dist[k][i] < dist[j][i]) || (dist[j][k] != null && dist[k][i] != null && dist[j][i] == null)) {
 						dist[j][i] = dist[j][k] + dist[k][i];
 						preds[j][i] = preds[k][i];
+						H7_Launcher.println("\n" + it + ")");
+						it++;
 						printMatrix(dist, 1);
 						printMatrix(preds, 2);
 						// Si un circuit absorbant est détecté durant l'algorithme, celui-ci s'arrête

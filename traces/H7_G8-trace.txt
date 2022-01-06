@@ -45,6 +45,8 @@ Nouvelle matrice P (prédécesseurs) :
 	Etapes Floyd Warshall :
 ----------------------------------------
 
+1)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -67,6 +69,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+2)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -89,6 +93,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+3)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -111,6 +117,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+4)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -133,6 +141,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+5)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -155,6 +165,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+6)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -177,6 +189,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+7)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -199,6 +213,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+8)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -221,6 +237,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+9)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -243,6 +261,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+10)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -264,6 +284,8 @@ Nouvelle matrice P (prédécesseurs) :
 4  |  4     0     1     2     4    
 
 
+
+11)
 
 Nouvelle matrice L (distances) :
 
@@ -287,6 +309,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+12)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -308,6 +332,8 @@ Nouvelle matrice P (prédécesseurs) :
 4  |  4     0     1     2     4    
 
 
+
+13)
 
 Nouvelle matrice L (distances) :
 
@@ -331,6 +357,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+14)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     4     
@@ -352,6 +380,8 @@ Nouvelle matrice P (prédécesseurs) :
 4  |  4     0     1     2     4    
 
 
+
+15)
 
 Nouvelle matrice L (distances) :
 

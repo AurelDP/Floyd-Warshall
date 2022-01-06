@@ -42,6 +42,8 @@ Nouvelle matrice P (prédécesseurs) :
 	Etapes Floyd Warshall :
 ----------------------------------------
 
+1)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     
@@ -61,6 +63,8 @@ Nouvelle matrice P (prédécesseurs) :
 3  |  X     X     X     3    
 
 
+
+2)
 
 Nouvelle matrice L (distances) :
 
@@ -82,6 +86,8 @@ Nouvelle matrice P (prédécesseurs) :
 
 
 
+3)
+
 Nouvelle matrice L (distances) :
 
    |  0     1     2     3     
@@ -101,6 +107,8 @@ Nouvelle matrice P (prédécesseurs) :
 3  |  X     X     X     3    
 
 
+
+4)
 
 Nouvelle matrice L (distances) :
 
